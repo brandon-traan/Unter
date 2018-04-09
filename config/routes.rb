@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root 'application#hello'
+  get 'welcome/hello'
+
+  root 'welcome#hello'
 end
