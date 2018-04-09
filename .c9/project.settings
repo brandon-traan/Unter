@@ -5,6 +5,10 @@
     "build": {
         "@saveall": true
     },
+    "golang": {
+        "@completion": false,
+        "@formatOnSave": false
+    },
     "instance": {
         "@automaticShutdown": "30"
     },
@@ -22,6 +26,15 @@
                 }
             }
         }
+    },
+    "php": {
+        "@completion": false
+    },
+    "preview": {
+        "@url": ""
+    },
+    "python": {
+        "@completion": false
     },
     "run": {
         "configs": {
