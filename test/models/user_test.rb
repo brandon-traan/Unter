@@ -6,11 +6,11 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(firstname: "Example", lastname: "Example", email: "user@example.com", 
                     phone: "1234567890", licenseN: "123456789", password: "foobar", password_confirmation: "foobar")
   end
-
+#-------------------------------------------------------------------------------
   test "should be valid" do
     assert @user.valid?
   end
-  
+#-------------------------------------------------------------------------------  
   test "first name should be present" do
     @user.firstname = "     "
     assert_not @user.valid?
@@ -35,7 +35,7 @@ class UserTest < ActiveSupport::TestCase
     @user.licenseN = "     "
     assert_not @user.valid?
   end
- #------------------------------------------------------------ 
+#------------------------------------------------------------------------------- 
   test "firstname should not be too long" do
     @user.firstname = "a" * 21
     assert_not @user.valid?
