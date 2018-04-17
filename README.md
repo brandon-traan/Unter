@@ -4,6 +4,6 @@ Car Sharing Scheme using Ruby on Rails
 
 * Brandon
 * Gabriel
-* James
+* James -EC2 Default User (login)
 * Leanne
 * Michael
