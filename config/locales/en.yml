@@ -31,3 +31,31 @@
 
 en:
   hello: "Hello world"
+  
+en:
+  activerecord:
+    attributes:
+      user:
+        firstname: "First Name"
+        lastname: "Last Name"
+        email: "E-mail address"
+        licenseN: "License Number"
+    errors:
+      models:
+        user:
+          attributes:
+            firstname:
+              blank: "is required"
+            lastname:
+              blank: "is required"
+            email:
+              blank: "is required"
+            phone:
+              blank: "is required"
+            licenseN:
+              blank: "is required"
+            password:
+              blank: "is required"
+            password_confirmation:
+              blank: ""
+
