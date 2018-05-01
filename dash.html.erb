@@ -22,16 +22,23 @@
       margin:0 auto;
     }
 
+      #title{
+        margin: auto;
+        padding: 3%;
+        text-align: center;
+      }
   </style>
 </head>
 
 <body>
-
+<div id="title">
   <h1>Dashboard</h1>
   <!--get user session-->
   <!--stored in SESSION as [user_id, user_name, user_email]-->
   <h2>Hello <% session.user_name %></h2>
-  <h3><% session.email %></h3>
+<!--  <h3><%# session.email %></h3>-->
+</div>
+
 
 <!--get user's past (before today) bookings-->
 
