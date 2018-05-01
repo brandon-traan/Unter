@@ -1,4 +1,26 @@
-<head></head>
+<head>
+  <style>
+    table {
+      float: left;
+      width: 46%;
+      margin:2%;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;}
+    td {
+      border-bottom: 1px solid #ddd;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    #table_container{
+      width:50%;
+      margin:0 auto;
+    }
+
+  </style>
+</head>
 
 <body>
 
@@ -15,16 +37,24 @@
 <!--  FROM BOOKING, HAS_BOOKING-->
 <!--  INNER JOIN BOOKING on HAS_BOOKING.booking_id=BOOKING.booking_id-->
 <!--  WHERE HAS_BOOKING.user_id= << GET SESSION USER ID HERE >>-->
-<!--    AND booking_timestamp< << GET TODAY'S DATE HERE >>-->
+<!--    AND booking_timestamp < << GET TODAY'S DATE HERE >>-->
 <!--  ORDER BY booking_timestamp DESC-->
 
 <!--store query result as pastbook as [booking_timestamp, booking_car_id]-->
+
 <!--  somehow do this in Ruby and stick into controller section-->
-<!--do same except change the date and the < to a > to get current/future bookings-->
-<!--  and order in asce order by timestamp-->
+
+  <!--  QUERY:-->
+  <!--  SELECT booking_timestamp, booking_car_id,-->
+  <!--  FROM BOOKING, HAS_BOOKING-->
+  <!--  INNER JOIN BOOKING on HAS_BOOKING.booking_id=BOOKING.booking_id-->
+  <!--  WHERE HAS_BOOKING.user_id= << GET SESSION USER ID HERE >>-->
+  <!--    AND booking_timestamp > << GET TODAY'S DATE HERE >>-->
+  <!--  ORDER BY booking_timestamp ASCE-->
+
 <!--  store as currentbook-->
 
-
+<div id="table_container">
 <table>
   <tr>
     <th colspan="=2">Past Bookings</th>
@@ -56,6 +86,6 @@
     </tr>
   <% end %>
 </table>
-
+</div>
 
 </body>
