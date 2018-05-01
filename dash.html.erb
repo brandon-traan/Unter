@@ -1,0 +1,61 @@
+<head></head>
+
+<body>
+
+  <h1>Dashboard</h1>
+  <!--get user session-->
+  <!--stored in SESSION as [user_id, user_name, user_email]-->
+  <h2>Hello <% session.user_name %></h2>
+  <h3><% session.email %></h3>
+
+<!--get user's past (before today) bookings-->
+
+<!--  QUERY:-->
+<!--  SELECT booking_timestamp, booking_car_id,-->
+<!--  FROM BOOKING, HAS_BOOKING-->
+<!--  INNER JOIN BOOKING on HAS_BOOKING.booking_id=BOOKING.booking_id-->
+<!--  WHERE HAS_BOOKING.user_id= << GET SESSION USER ID HERE >>-->
+<!--    AND booking_timestamp< << GET TODAY'S DATE HERE >>-->
+<!--  ORDER BY booking_timestamp DESC-->
+
+<!--store query result as pastbook as [booking_timestamp, booking_car_id]-->
+<!--  somehow do this in Ruby and stick into controller section-->
+<!--do same except change the date and the < to a > to get current/future bookings-->
+<!--  and order in asce order by timestamp-->
+<!--  store as currentbook-->
+
+
+<table>
+  <tr>
+    <th colspan="=2">Past Bookings</th>
+  </tr>
+  <tr>
+    <td>Time</td>
+    <td>Car</td>
+  </tr>
+  <% @pastbook.each do |book| %>
+  <tr>
+    <td><% book.booking_timestamp %></td>
+    <td><% book.booking_car_id %></td>
+  </tr>
+  <% end %>
+</table>
+
+<table>
+  <tr>
+    <th colspan="=2">Current Bookings</th>
+  </tr>
+  <tr>
+    <td>Time</td>
+    <td>Car</td>
+  </tr>
+  <% @currentbook.each do |book| %>
+    <tr>
+      <td><% book.booking_timestamp %></td>
+      <td><% book.booking_car_id %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+</body>
