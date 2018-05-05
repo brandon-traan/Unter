@@ -14,7 +14,7 @@ yarn-error.log
 /.c9.bkp
 
 # Ignore bundler config.
-/.bundle/*
+/.bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
