@@ -79,5 +79,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  encoding: utf8
-  pool: 15
+  database: users_production
