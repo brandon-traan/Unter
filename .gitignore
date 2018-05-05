@@ -10,9 +10,8 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
-.c9/
-.c9.bkp/
-*.cache
+/.c9
+/.c9.bkp
 
 # Ignore bundler config.
 /.bundle/*
@@ -23,7 +22,7 @@ yarn-error.log
 
 # Ignore all logfiles and tempfiles.
 /log/*
-tmp/
+/tmp
 !/log/.keep
 !/tmp/.keep
 
