@@ -34,7 +34,6 @@ gem 'autoprefixer-rails'
 gem 'rubocop', require: false
 gem 'pg'
 
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -62,6 +61,9 @@ group :test do
   gem 'guard-minitest',           '2.4.4'
 end
 
+group :production do
+  gem 'pg'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
