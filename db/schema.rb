@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507153226) do
+ActiveRecord::Schema.define(version: 20180507161110) do
 
   create_table "booking", force: :cascade do |t|
     t.integer "users_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20180507153226) do
     t.string "car_year"
     t.string "car_size"
     t.string "car_price"
+    t.datetime "pickup", null: false
+    t.datetime "return", null: false
     t.index ["cars_id"], name: "index_booking_on_cars_id"
     t.index ["users_id"], name: "index_booking_on_users_id"
   end
@@ -39,6 +41,8 @@ ActiveRecord::Schema.define(version: 20180507153226) do
     t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
+    t.string "status"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,6 +54,8 @@ ActiveRecord::Schema.define(version: 20180507153226) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.string "role", default: "Customer"
+    t.float "rentalCharge", default: 0.0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["licenseN"], name: "index_users_on_licenseN", unique: true
   end
