@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :bookings
   has_many :cars, through: :bookings
+  enum roles: [:Customer, :Admin, :SuperAdmin]
   before_save { self.email = email.downcase }
   validates :firstname,  presence: true, length: { maximum: 20 }
   validates :lastname, presence: true, length: { maximum: 20 }
@@ -14,10 +15,17 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
   
-  #returns hash digest of given string
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     
     BCrypt::Password.create(string, cost: cost)
+  end
+  
+  def admin?
+    self.role == 'Admin'
+  end
+  
+  def superadmin?
+    self.role = 'SuperAdmin'
   end
 end
