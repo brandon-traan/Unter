@@ -28,12 +28,12 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-<<<<<<< HEAD
+
 gem 'bootstrap-sass', '3.3.7'
-=======
+
 gem 'rubocop', require: false
 
->>>>>>> f66fee4125e1eee70bed9493c85c8f905da2393d
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

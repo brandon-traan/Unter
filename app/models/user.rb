@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :bookings
+  has_many :cars, through: :bookings
   before_save { self.email = email.downcase }
   validates :firstname,  presence: true, length: { maximum: 20 }
   validates :lastname, presence: true, length: { maximum: 20 }
