@@ -24,16 +24,19 @@ textarea {
   margin-bottom: 10px;
 }
 
-// .body{
-//     padding-top: 80px;
-// }
+#unterTitle{
+    font-size: 6em;
+}
 
 
 
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-  height: 80%;
+
+  height: 50%;
+  width: 50%;
+  margin-bottom: 10px;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
