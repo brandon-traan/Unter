@@ -7,20 +7,33 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  def index
+    @users = @q_users.result().paginate(page: params[:page])
+  end
+  
+  def show
+    @user = User.find(params[:id])
+  end
+  
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to Unter!"
+      if logged_in?
+        flash[:success] = "Account created!"
+      else
+        log_in @user
+        flash[:success] = "Welcome to Unter!"
+      end
       redirect_to @user
     else
-      render 'new'
+      flash[:danger] = "Sign up Fail"
+      render :new
     end
   end
   private
 
     def user_params
       params.require(:user).permit(:firstname, :lastname, :email, :phone, :licenseN, 
-                                    :password, :password_confirmation)
+                                    :password, :password_confirmation, :role, :rentalCharge)
     end
 end

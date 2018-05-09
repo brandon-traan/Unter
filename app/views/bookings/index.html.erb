@@ -1,0 +1,26 @@
+<% provide(:title, 'All bookings') %>
+
+<h1>View and Search bookings</h1>
+<%= search_form_for @q_bookings do |f| %>
+  
+  <%= f.label "User id and name: " %>
+  <%= "#{current_user.id}- #{current_user.firstname}" %><br>
+  <%= f.label "Car make: " %>
+  <%= f.collection_select :cars_id, Car.all, :id, lambda {|c| "#{c.make}"}, {:prompt => "Please select a car"} %><br>
+  <%= submit_tag 'Search', name: nil, class: "btn btn-primary" %>
+  
+<% end %>
+<br>
+
+<%= will_paginate %>
+
+<%= content_tag :table, class: 'table' do %>
+  <%= content_tag :thead, display_booking_sorted_column_headers(@q_bookings), nil, false  %>
+  <%= content_tag :tbody, display_booking_search_results(@bookings), nil, false  %>
+<% end %>
+
+<%= will_paginate %>
+
+<br>
+
+<%= link_to 'New Booking', cars_path %>

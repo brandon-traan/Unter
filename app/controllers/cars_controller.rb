@@ -1,5 +1,14 @@
 class CarsController < ApplicationController
   
+  def index
+    @q_cars = Car.ransack(params[:q])
+    @cars = @q_cars.result().paginate(page: params[:page])
+  end
+  
+  def show
+    @car = Car.find(params[:id])
+  end
+  
   def new
     @car = Car.new
   end
@@ -16,7 +25,7 @@ class CarsController < ApplicationController
   private
 
     def car_params
-      params.require(:car).permit(:make, :model, :year, :size, :price)
+      params.require(:car).permit(:make, :model, :year, :size, :price, :location, :status)
     end
   
 end

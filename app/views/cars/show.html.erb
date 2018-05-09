@@ -1,0 +1,27 @@
+<% provide(:title, @car.make+' - '+@car.model) %>
+
+<h1>
+  <%= @car.make %>
+</h1>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="car_info">
+      
+        <%= label_tag "Model" %> :
+        <%= @car.model %><br>
+        <%= label_tag "Year" %> :
+        <%= @car.year %><br>
+        <%= label_tag "Price(p/h)" %> :
+        <%= '$%.2f per hour' % @car.price %><br>
+        <%= label_tag "Size" %> :
+        <%= @car.size %><br>
+        <%= label_tag "Location" %> :
+        <%= @car.location %><br>
+        <%= label_tag "Status" %> :
+        <%= @car.status %><br>
+      
+    </section>
+  </aside>
+</div>
+
+ 

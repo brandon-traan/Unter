@@ -28,9 +28,12 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+# Use faker to generate sample users
+gem 'faker', '1.7.3'
+gem 'ransack'
 gem 'bootstrap-sass', '3.3.7'
-
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop', require: false
 
 
