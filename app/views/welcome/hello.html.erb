@@ -45,10 +45,28 @@
           content: contentString
       });
 
+      // var image = {
+      //     url: 'https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-9/14522834_10208739668781423_6278668324375124829_n.jpg?_nc_cat=0&oh=206c27b103c90a6b608e56587c79221d&oe=5B8E4E51',
+      //     size: new google.maps.Size(71, 71),
+      //     origin: new google.maps.Point(0, 0),
+      //     anchor: new google.maps.Point(17, 34),
+      //     scaledSize: new google.maps.Size(25, 25)
+      // };
+
+      var image = {
+          url: 'https://cdn2.iconfinder.com/data/icons/car-vol-7/512/2-512.png',
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+      };
+
+
       var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
-          title: 'Hello World!'
+          title: 'Hello World!',
+          icon: image
       });
 
       marker.addListener('click', function() {
