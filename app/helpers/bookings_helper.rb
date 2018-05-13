@@ -7,8 +7,9 @@ module BookingsHelper
   end
   
   def field_text(field)
-    translation = {:id=>"Index", :pickUpTime=>"Pick up time", :returnTime=>"Return time", 
-      :user_id=>"User", :car_id=>"Car", :bookingStatus=>"Status"}
+    translation = {:id=>"Index", :user_firstname=>"User First Name", :user_lastname=>"User Last Name", :user_email=>"User Email", :pickup=>"Pick up time", 
+     :user_phone=>"User Phone", :car_make=>"Car Make", :car_model=>"Car Model", :car_year=>"Car Year", :car_size=>"Car Size", :car_price=>"Car Price", 
+     :return=>"Return time", :user_id=>"User", :car_id=>"Car", :Status=>"Status"}
     translation[field]
   end
     

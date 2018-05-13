@@ -1,7 +1,7 @@
 module CarsHelper
   def car_fields 
     # fields to be displayed on front-end view
-    [:make, :model, :status, :year, :price, :size] 
+    [:make, :model, :status, :year, :price, :size, :location, :status] 
   end
     
   def action 

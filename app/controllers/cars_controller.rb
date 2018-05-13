@@ -22,6 +22,18 @@ class CarsController < ApplicationController
       render 'new'
     end
   end
+  
+  def edit
+    @car = Car.find_by(params[:id])
+  end
+  def destroy
+    @car = Car.find_by(params[:id])
+    reservations = Reservation.where(car_id: @car.id)
+    reservations.destroy_all
+    @car.destroy
+    flash[:success] = 'Car deleted.'
+    redirect_to cars_url
+  end
   private
 
     def car_params

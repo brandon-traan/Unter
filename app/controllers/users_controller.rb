@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     @users = @q_users.result().paginate(page: params[:page])
   end
   
+  def after_sign_in_path_for(resource)
+  current_user_path
+  end
+  
   def show
     @user = User.find(params[:id])
   end

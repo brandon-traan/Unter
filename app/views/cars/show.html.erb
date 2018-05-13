@@ -24,4 +24,8 @@
   </aside>
 </div>
 
- 
+<% if @car.isAvailable? %>
+  <%= link_to 'Book', new_booking_path(:car_id => @car.id) %> |
+<% end %>
+<%= link_to 'List', cars_path %> |
+<%= link_to 'Back', :back %>

@@ -5,11 +5,11 @@
   <%= f.label :location %>
   <%= f.search_field :location_cont %><br>
   <%= f.label :manufacturer %>
-  <%= f.collection_select : make_cont, Car.select("distinct make"), :make, :make, {:include_blank => "Please select car maker"} %><br>
+  <%= f.collection_select :make_cont, Car.select("distinct make"), :make, :make, {:include_blank => "Please select car maker"} %><br>
   <%= f.label :model %>
   <%= f.collection_select :model_cont, Car.select("distinct model"), :model, :model, {:include_blank => "Please select car model"} %><br>
   <%= f.label :style %>
-  <%= f.collection_select :size_cont, Car.styles, :first, :first, {:include_blank => "Please select car style"} %><br>
+  <%= f.collection_select :size_cont, Car.sizes, :first, :first, {:include_blank => "Please select car style"} %><br>
   <%= f.label :status %>
   
   <%= f.collection_select :status_cont, Car.statuses.except(:Suggested), :first, :first, {:include_blank => "Please select car status"} %><br>
