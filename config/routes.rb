@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/edit', to: 'users#edit'
   resources :users
+  patch '/users/:id/edit', controller: 'users', action: :update
+  
 end
