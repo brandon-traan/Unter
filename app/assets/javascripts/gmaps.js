@@ -1,4 +1,6 @@
-function initAutocomplete() {
+var car_data = {lat : -37.805181, lng: 144.970659}
+
+function initAutocomplete(cardata) {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: -37.8133664,
