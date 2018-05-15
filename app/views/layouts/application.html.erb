@@ -4,12 +4,27 @@
     <title>Unter</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield(:gmapsHead) %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOARHaYAOUzRECf21AurlwNQHeLDLtgOA&libraries=places&callback=initAutocomplete" async defer></script>
   </head>
+  <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Unter", root_path, id: "logo", class: "navbar-left" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home",   root_path %></li>
+            <li><%= link_to "Log In",   login_path %></li>
+            <li><%= link_to "Book", '#' %></li>
+          </ul>
+        </nav>
+      </div>
+  </header>
 
   <body>
     <%= yield %>
-    <%= debug(params) if Rails.env.development? %>
+    <!-- <%= debug(params) if Rails.env.development? %> -->
+
   </body>
 </html>
