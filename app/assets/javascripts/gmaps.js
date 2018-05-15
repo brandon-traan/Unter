@@ -1,7 +1,8 @@
-var car_data = {lat : -37.805181, lng: 144.970659}
+var car_data = {lat : -37.812735, lng: 144.961168};
+var map;
 
 function initAutocomplete(cardata) {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: -37.8133664,
             lng: 144.9638285
@@ -244,7 +245,9 @@ function initAutocomplete(cardata) {
         infowindow.open(map, marker);
     });
 
-
+    google.maps.event.addListener(map, 'idle', function() {
+      addMarker();
+    });
 
 
     var markers = [];
@@ -295,4 +298,21 @@ function initAutocomplete(cardata) {
         });
         map.fitBounds(bounds);
     });
-}
+};
+
+
+function addMarker(){
+  var infowindow = new google.maps.InfoWindow({
+      content: "fuckyeah"
+  });
+
+  var markerTest = new google.maps.Marker({
+    position: car_data,
+    map: map,
+    title: "it works"
+  });
+
+  google.maps.event.addListener(markerTest, 'click', function() {
+    infowindow.open(map,markerTest);
+  });
+};
