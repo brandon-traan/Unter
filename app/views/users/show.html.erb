@@ -1,8 +1,9 @@
 <ul>First name: <%= @user.firstname %></ul>
-<ul>Last name: <%= @user.lastname %></ul> 
+<ul>Last name: <%= @user.lastname %></ul>
 <ul>Email: <%= @user.email %></ul>
-<ul>Phone number: <%= @user.phone %></ul> 
+<ul>Phone number: <%= @user.phone %></ul>
 <ul>Licence number: <%= @user.licenseN %></ul>
 
 <%= link_to "Update Details", edit_user_path(current_user), class: "btn btn-lg btn-primary" %>
 <%= link_to "Home", welcome_hello_url, class: "btn btn-lg btn-primary" %>
+<%= link_to "Cars", cars_path, class: "btn btn-lg btn-primary" %>

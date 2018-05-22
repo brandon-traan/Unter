@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :show]
+  before_action :correct_user,   only: [:edit, :update, :show]
   def show
     @user = User.find(params[:id])
   end
@@ -8,14 +9,31 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  def index
+    @users = @q_users.result().paginate(page: params[:page])
+  end
+  
+  def after_sign_in_path_for(resource)
+  current_user_path
+  end
+  
+  def show
+    @user = User.find(params[:id])
+  end
+  
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to Unter!"
+      if logged_in?
+        flash[:success] = "Account created!"
+      else
+        log_in @user
+        flash[:success] = "Welcome to Unter!"
+      end
       redirect_to @user
     else
-      render 'new'
+      flash[:danger] = "Sign up Fail"
+      render :new
     end
   end
   
@@ -37,7 +55,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:firstname, :lastname, :email, :phone, :licenseN, 
-                                    :password, :password_confirmation)
+                                    :password, :password_confirmation, :role, :rentalCharge)
     end
     
     def logged_in_user
@@ -46,4 +64,10 @@ class UsersController < ApplicationController
         redirect_to login_url
       end
     end
+    
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless @user == current_user
+    end
+    
 end
