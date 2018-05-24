@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  has_many :bookings
-  has_many :cars, through: :bookings
   enum roles: [:Customer, :Admin, :SuperAdmin]
   before_save { self.email = email.downcase }
   validates :firstname,  presence: true, length: { maximum: 20 }

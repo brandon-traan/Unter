@@ -1,6 +1,4 @@
 class Car < ApplicationRecord
-  has_many :bookings
-  has_many :users, through: :bookings
   
   enum sizes: [:Small, :Medium, :Big]
   enum statuses: [:CheckedOut, :Available, :Reserved, :Suggested]

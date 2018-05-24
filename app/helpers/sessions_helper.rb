@@ -48,7 +48,6 @@ module SessionsHelper
   # Confirms the correct user.
   def correct_user
     # @user = User.find(session[:user_id])
-    unless (isAdmin? || isSuperAdmin?)
       if params[:id] == nil
         flash[:danger] = "You're not valid to perform such operations. Please login as Admin or SuperAdmin to move on."
         redirect_to login_url
@@ -60,7 +59,8 @@ module SessionsHelper
         redirect_to current_user
         return
       end
-    end
   end
-  
+  def isCustomer?
+    session[:user_role] == 'Customer'
+  end
 end

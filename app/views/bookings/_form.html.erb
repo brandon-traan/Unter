@@ -11,16 +11,16 @@
       </div>
   <% end %>
 
-  <% if booking.cars_id.blank? %>
-    <% cars_id = params[:cars_id] %>
+  <% if booking.car_id.blank? %>
+    <% car_id = params[:car_id] %>
   <% else %>
-    <% cars_id = booking.cars_id %>
+    <% car_id = booking.car_id %>
   <% end %>
   
   <%= form.label "Car make: " %>
-  <%= Car.find_by(cars_id).make %><br>
+  <%= Car.find_by(car_id).make %><br>
   
-  <%= form.hidden_field :cars_id, value: cars_id %>
+  <%= form.hidden_field :car_id, value: car_id %>
   <%= form.hidden_field :user_id, value: session[:user_id] %><br>
   
   <%= form.label "Pickup time:" %><br>

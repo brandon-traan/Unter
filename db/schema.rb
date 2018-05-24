@@ -10,29 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180513162133) do
+ActiveRecord::Schema.define(version: 20180524205451) do
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "users_id"
-    t.integer "cars_id"
     t.integer "user_id"
-    t.string "users_firstname"
+    t.integer "car_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "user_lastname"
-    t.string "user_email"
-    t.string "user_phone"
-    t.string "car_make"
-    t.string "car_model"
-    t.string "car_year"
-    t.string "car_size"
-    t.string "car_price"
-    t.datetime "pickup", null: false
-    t.datetime "return", null: false
+    t.datetime "pickup"
     t.datetime "expectedReturn", null: false
-    t.string "Status", default: "Awaiting"
-    t.index ["cars_id"], name: "index_bookings_on_cars_id"
-    t.index ["users_id"], name: "index_bookings_on_users_id"
+    t.string "status", default: "Awaiting"
+    t.datetime "returnT"
+    t.index ["car_id"], name: "index_bookings_on_car_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -40,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180513162133) do
     t.string "model"
     t.string "year"
     t.string "size"
-    t.string "price"
+    t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"

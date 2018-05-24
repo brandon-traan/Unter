@@ -2,41 +2,41 @@
 
 <p>
   <strong>Car Plate Number:</strong>
-  <%=  Car.find(@booking.car_id).licensePlateNumber %>
+  <%=  Car.find(@booking.car_id).id %>
 </p>
 
 <p>
   <strong>Checkouttime:</strong>
-  <%= @booking.checkOutTime %>
+  <%= @booking.pickup %>
 </p>
 
-<% if @booking.bookingStatus == "Awaiting" %>
+<% if @booking.status == "Awaiting" %>
     <p>
       <strong>Expectedreturntime:</strong>
-      <%= @booking.expectedReturnTime %>
+      <%= @booking.expectedReturn %>
     </p>
 <% end %>
 
-<% if @booking.bookingStatus != "Awaiting" %>
+<% if @booking.status != "Awaiting" %>
 
-    <% if @booking.bookingStatus != "Cancel" %>
+    <% if @booking.status != "Cancel" %>
         <p>
-          <strong>Pickuptime:</strong>
-          <%= @booking.pickUpTime %>
+          <strong>Pickup:</strong>
+          <%= @booking.pickup %>
         </p>
     <% end %>
 
-    <% if @booking.bookingStatus == "Complete" %>
+    <% if @booking.status == "Complete" %>
         <p>
           <strong>Returntime:</strong>
-          <%= @booking.returnTime %>
+          <%= @booking.returnT %>
         </p>
     <% end %>
 
-    <% if @booking.bookingStatus == "Active" %>
+    <% if @booking.status == "Active" %>
         <p>
           <strong>Expectedreturntime:</strong>
-          <%= @booking.expectedReturnTime %>
+          <%= @booking.expectedReturn %>
         </p>
     <% end %>
 
@@ -44,23 +44,19 @@
 
 <p>
   <strong>Bookingstatus:</strong>
-  <%= @booking.bookingStatus %>
+  <%= @booking.status %>
 </p>
 
 
 <% # buttons that display on customer view %>
-<% if @booking.bookingStatus == "Awaiting" %>
+<% if @booking.status == "Awaiting" %>
     <%= button_to "check out", pickup_booking_path(@booking), :method => :put %>
     <%= button_to "cancel", cancel_booking_path(@booking), :method => :put %>
 <% end %>
 
-<% if @booking.bookingStatus == "Active" %>
-    <%= button_to "return", returncar_booking_path(@booking), :method => :put %>
-<% end %>
 
-<%if isAdmin? || isSuperAdmin? %>
-  <%= link_to 'Delete', @booking, method: :delete, data: { confirm: "Delete this booking?" } %> |
-<% elsif isCustomer? && !["Active","Complete","Cancel"].include?(@booking.bookingStatus) %>
+
+<%if !["Active","Complete","Cancel"].include?(@booking.status) %>
   <%= link_to 'Cancel', edit_booking_path(@booking) %> |
 <% end %>
 <%= link_to 'Back', bookings_path %>
