@@ -40,6 +40,7 @@ Car.create(
 
 
 
+
 99.times do |n|
   firstname  = Faker::Name.first_name
   lastname  = Faker::Name.last_name
