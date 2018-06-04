@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180524205451) do
+ActiveRecord::Schema.define(version: 20180604165810) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180524205451) do
     t.datetime "expectedReturn", null: false
     t.string "status", default: "Awaiting"
     t.datetime "returnT"
+    t.datetime "checkOut", null: false
     t.index ["car_id"], name: "index_bookings_on_car_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
