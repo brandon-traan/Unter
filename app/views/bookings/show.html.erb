@@ -7,7 +7,7 @@
 
 <p>
   <strong>Checkouttime:</strong>
-  <%= @booking.pickup %>
+  <%= @booking.checkOut %>
 </p>
 
 <% if @booking.status == "Awaiting" %>
@@ -54,7 +54,9 @@
     <%= button_to "cancel", cancel_booking_path(@booking), :method => :put %>
 <% end %>
 
-
+<% if @booking.status == "Active" %>
+    <%= button_to "return", returncar_booking_path(@booking), :method => :put %>
+<% end %>
 
 <%if !["Active","Complete","Cancel"].include?(@booking.status) %>
   <%= link_to 'Cancel', edit_booking_path(@booking) %> |

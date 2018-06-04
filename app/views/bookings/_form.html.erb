@@ -23,8 +23,8 @@
   <%= form.hidden_field :car_id, value: car_id %>
   <%= form.hidden_field :user_id, value: session[:user_id] %><br>
   
-  <%= form.label "Pickup time:" %><br>
-  <%= form.datetime_select :pickup, id: :booking_pickup %><br>
+  <%= form.label "Checkout time:" %><br>
+  <%= form.datetime_select :checkOut, id: :booking_checkOut %><br>
 
   <%= form.label "Expected return time:" %> <br>
   <%= form.datetime_select :expectedReturn, id: :booking_expectedReturn %><br>

@@ -2,11 +2,11 @@ module BookingsHelper
   
   def booking_fields 
     # fields to be displayed on front-end view
-    [:id, :user_id,:car_id, :pickup, :expectedReturn, :returnT, :status] 
+    [:id, :checkOut, :pickup, :expectedReturn, :returnT, :user_id,:car_id, :status] 
   end
   
   def field_text(field)
-    translation = {:id=>"Index", :pickup=>"Pick up time",
+    translation = {:id=>"Index", :checkOut=>"Check out time", :pickup=>"Pick up time",
      :returnT=>"Return time", :user_id=>"User", :car_id=>"Car", :Status=>"Status"}
     translation[field]
   end

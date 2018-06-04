@@ -1,10 +1,10 @@
-class PickupCheckJob < ApplicationJob
+class PickupJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
     # Do something later
     booking_id = args[0]
-    booking = Booking.find(booking_id)
+    booking = Booking.find(booking_id.to_s)
     if booking.bookingStatus == "Awaiting"
       booking.update_attribute(:bookingStatus, "Cancel")
       car = Car.find_by_id(booking.car_id)
