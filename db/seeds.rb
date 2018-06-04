@@ -50,11 +50,13 @@ end
 50.times do |cnt|
     make = Faker::Vehicle.manufacture
     model = "model#{cnt%8}"
-    year = Faker::Number.between(2005.00, 2018.00)
-    price = Faker::Number.between(80.00, 300.00)
+    year = Faker::Number.between(2010, 2018)
+    price = Faker::Number.between(80, 300)
     size = "#{Car.sizes.key(cnt%3)}"
     location = Faker::Address.street_address
     status = "Available"
+    longitude = ((rand(0.39454609..0.39516506) * 360) - 180).to_s
+    latitude = ((rand(0.90238033..0.90341901) * 360) - 180).to_s
     Car.create!(
         make: make,
         model: model,
@@ -62,5 +64,7 @@ end
         price: price,
         size: size,
         location: location,
-        status: status)
+        status: status,
+        longitude: longitude,
+        latitude: latitude)
 end
