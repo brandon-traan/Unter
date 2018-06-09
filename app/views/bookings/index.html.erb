@@ -5,7 +5,13 @@
 <%= search_form_for @q_bookings do |f| %>
   
   <%= f.label "User id and name: " %>
-  <%= "#{current_user.id}- #{current_user.firstname}" %><br>
+  <% if isSuperAdmin? %>
+    <%= f.collection_select :user_id_eq, User.all, :id, lambda {|u| "#{u.id} - #{u.firstname}"}, {:prompt => "Please select user id"} %><br>
+  <% elsif isAdmin? %>
+    <%= f.collection_select :user_id_eq, User.where.not(role: "SuperAdmin"), :id, lambda {|u| "#{u.id}- #{u.firstname}"}, {:prompt => "Please select a user"} %><br>
+  <% else %>
+    <%= "#{current_user.id}- #{current_user.firstname}" %><br>
+  <% end %>
   <%= f.label "Car make: " %>
   <%= f.collection_select :car_id, Car.all, :id, lambda {|c| "#{c.make}"}, {:prompt => "Please select a car"} %><br>
   <%= submit_tag 'Search', name: nil, class: "btn btn-primary" %>

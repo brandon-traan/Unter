@@ -5,11 +5,16 @@ class BookingsController < ApplicationController
   Time.zone = "Australia/Melbourne"
   
   before_action :logged_in_user, only: [:show, :edit, :index, :new, :create, :pickup, :returncar, :cancel, :destroy]
-  
+  before_action :logged_in_as_admin, only: [:destroy]
+  before_action :can_destroy, only: [:destroy]
   
   def index
-    @q_bookings = Booking.ransack(params[:q])
-    @bookings = @q_bookings.result().where(:user_id => session[:user_id]).paginate(page: params[:page]) || [] # return current users record or empty
+     if isAdmin? || isSuperAdmin?
+      @q_bookings = Booking.ransack(params[:q])
+      @bookings = @q_bookings.result().paginate(page: params[:page])
+    else
+      @bookings = Booking.where(:user_id => session[:user_id]) || [] 
+     end
   end
   
   def show
@@ -20,7 +25,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
   def edit
-    @reservation = Reservation.find(params[:id])
+    @booking = Booking.find(params[:id])
   end
   
   def create
@@ -103,7 +108,14 @@ class BookingsController < ApplicationController
     end
   end
   
-
+  def destroy
+    @booking = Booking.find(params[:id])
+    User.find(@booking.user_id).update_attribute(:available, true)
+    Car.find(@booking.car_id).update_attribute(:status, "Available")
+    @booking.destroy
+    flash[:success] = 'Booking deleted!'
+    redirect_to bookings_url
+  end
 
   def cancel
     @booking = Booking.find(params[:id])
@@ -126,5 +138,13 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:user_id, :car_id, :pickup, 
                                     :expectedReturn, :status, :returnT, :checkOut)
   end
-  
+  def can_destroy
+      @car = Car.find(params[:id])
+      booking_in_use = Booking.where(car_id: @car.id)
+                                .where.not(status: ['Complete', 'Cancel']).size != 0
+      if @car.status != "Available" || booking_in_use
+        flash[:danger] = "This car is in use. It cannot be deleted now!"
+        redirect_to @car
+      end
+  end
 end

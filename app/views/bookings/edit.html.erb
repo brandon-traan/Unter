@@ -1,0 +1,13 @@
+<% provide(:title, "Edit") %>
+<h1>Editing Booking</h1>
+
+<% if isAdmin? || isSuperAdmin? %>
+  <%= render 'form', booking: @booking %>
+<% elsif isCustomer? %>
+  <%= render 'cancel', booking: @booking %>
+<% end %>
+
+<%= link_to 'Show', @booking %> |
+<% if isAdmin? || isSuperAdmin? %>
+  <%= link_to 'List', bookings_path %> |
+<% end %>

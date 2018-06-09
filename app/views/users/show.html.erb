@@ -19,5 +19,11 @@
     </section>
   </aside>
 </div>
+<% if isAdmin? || isSuperAdmin? %>
+  <% if !current_user?(@user) %>
+    <%= link_to "Delete", @user, method: :delete, data: { confirm: "Delete this user?" } %> |
+  <% end %>
+<% end %>
 <%= link_to "home!", root_path %>
+<%= link_to "bookings", bookings_path %>
 <%= link_to "Cars", cars_path %>

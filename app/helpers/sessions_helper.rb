@@ -5,7 +5,6 @@ module SessionsHelper
     session[:user_role] = user.role
   end
   
-  #returns current user
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -60,7 +59,21 @@ module SessionsHelper
         return
       end
   end
+  def isAdmin?
+      session[:user_role] == 'Admin'
+  end
+  def isSuperAdmin?
+      session[:user_role] == 'SuperAdmin'
+  end
   def isCustomer?
     session[:user_role] == 'Customer'
+  end
+  
+  def logged_in_as_admin
+    unless (isAdmin? || isSuperAdmin?)
+      store_location
+      flash[:danger] = "Please login as Admin or SuperAdmin to move on."
+      redirect_to login_url
+    end
   end
 end

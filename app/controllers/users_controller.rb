@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:index, :show, :edit, :update]
-  
+  before_action :logged_in_as_admin, only: [:index]
   def show
     @user = User.find(params[:id])
   end
@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   end
   
   def index
+    if isAdmin?
+      @q_users = User.where.not(role: "SuperAdmin").ransack(params[:q])
+    else
+      @q_users = User.ransack(params[:q])
+    end
     @users = @q_users.result().paginate(page: params[:page])
   end
   

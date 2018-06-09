@@ -21,14 +21,25 @@
   <%= Car.find_by(car_id).make %><br>
   
   <%= form.hidden_field :car_id, value: car_id %>
-  <%= form.hidden_field :user_id, value: session[:user_id] %><br>
+  <% if isSuperAdmin? %>
+    <%= form.label "User id and name: " %>
+    <%= form.collection_select :user_id, User.all, :id, lambda {|u| "#{u.id}- #{u.firstname}"}, {:prompt => "Please select user id"} %><br>
+  <% elsif isAdmin? %>
+    <%= form.label "User id and name: " %>
+    <%= form.collection_select :user_id, User.where.not(role: "SuperAdmin"), :id, lambda {|u| "#{u.id}- #{u.firstname}"}, {:prompt => "Please select user id"} %><br>
+  <% else %>
+    <%= form.hidden_field :user_id, value: session[:user_id] %><br>
+  <% end %>
   
   <%= form.label "Checkout time:" %><br>
   <%= form.datetime_select :checkOut, id: :booking_checkOut %><br>
 
   <%= form.label "Expected return time:" %> <br>
   <%= form.datetime_select :expectedReturn, id: :booking_expectedReturn %><br>
-  
+  <% if (isAdmin? || isSuperAdmin?) && false %>
+    <%= form.label "Booking status:" %> <br>
+    <%= form.collection_select :status, Booking.statuses, :first, :first, {:prompt => "Please select booking status"} %><br>
+  <% end %>
   <br>
   <%= form.submit "Make a booking", class: "btn btn-primary" %><br>
     

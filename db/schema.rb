@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604210754) do
+ActiveRecord::Schema.define(version: 20180606131929) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20180604210754) do
     t.string "role", default: "Customer"
     t.float "rentalCharge", default: 0.0
     t.boolean "available", default: true
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["licenseN"], name: "index_users_on_licenseN", unique: true
   end
