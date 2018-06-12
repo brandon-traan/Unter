@@ -1,33 +1,28 @@
 class UsersController < ApplicationController
-<<<<<<< HEAD
-  
+
   before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:index, :show, :edit, :update]
-  
-=======
-  before_action :logged_in_user, only: [:edit, :update, :show]
-  before_action :correct_user,   only: [:edit, :update, :show]
->>>>>>> markers_googlemaps
+
   def show
     @user = User.find(params[:id])
   end
-  
+
   def new
     @user = User.new
   end
-  
+
   def index
     @users = @q_users.result().paginate(page: params[:page])
   end
-  
+
   def after_sign_in_path_for(resource)
   current_user_path
   end
-  
+
   def show
     @user = User.find(params[:id])
   end
-  
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -43,11 +38,11 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
@@ -57,24 +52,24 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
-  
+
   private
 
     def user_params
-      params.require(:user).permit(:firstname, :lastname, :email, :phone, :licenseN, 
+      params.require(:user).permit(:firstname, :lastname, :email, :phone, :licenseN,
                                     :password, :password_confirmation, :role, :rentalCharge)
     end
-    
+
     def logged_in_user
       unless logged_in?
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
     end
-    
+
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless @user == current_user
     end
-    
+
 end
