@@ -68,8 +68,8 @@ end
     size = "#{Car.sizes.key(cnt%3)}"
     location = Faker::Address.street_address
     status = "Available"
-    longitude = ((rand(0.39454609..0.39516506) * 360) - 180).to_s
-    latitude = ((rand(0.90238033..0.90341901) * 360) - 180).to_s
+    longitude = ((rand(0.90238033..0.90341901) * 360) - 180).to_s
+    latitude = ((rand(0.39454609..0.39516506) * 360) - 180).to_s
     Car.create!(
         make: make,
         model: model,

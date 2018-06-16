@@ -1,9 +1,7 @@
 class CarsController < ApplicationController
-<<<<<<< HEAD
+
    before_action :logged_in_user, only: [:index, :new, :show]
-=======
-  before_action :logged_in_user, only: [:index]
->>>>>>> markers_googlemaps
+
   def index
     @cars_list = Car.all
     @q_cars = Car.ransack(params[:q])
