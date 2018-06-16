@@ -2,21 +2,12 @@
   <%= javascript_include_tag 'gmaps' %>
 <% end %>
 
-
 <h1 id="unterTitle">Unter</h1>
 
 <input id="pac-input" class="controls" type="text" placeholder="Enter address...">
 <div id="map" class="center-block"></div>
 
 <div class="container-fluid">
-<div align="left" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-<dl>
-<dt>Car</dt><dd> &nbsp&nbsp <%= @cars[0].make %> <%= @cars[0].model %></dd>
-<dt>Year</dt> <dd> &nbsp&nbsp <%=  @cars[0].year %></dd>
-<dt>Car Size</dt> <dd> &nbsp&nbsp<%=  @cars[0].size %></dd>
-<dt>Car Size</dt> <dd> &nbsp&nbsp<%=  @cars[1].latitude %></dd>
-</dl>
+  <div align="left" class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
 </div>
-</div>
-<%= link_to "Book", cars_path, class: "btn btn-lg btn-primary" %>
 <%= link_to "Book", cars_path, class: "btn btn-lg btn-primary" %>
