@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :users
 
   get '/cars/new' => 'cars#new'
+  get '/cars/:id' => 'cars#show'
   resources :cars
 
 

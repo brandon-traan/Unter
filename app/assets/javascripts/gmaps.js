@@ -17,6 +17,7 @@ info_window = new google.maps.InfoWindow({
             lng: 144.9638285
         },
         zoom: 15,
+        disableDefaultUI: true,
         styles: [{
             "elementType": "geometry",
             "stylers": [{
@@ -294,7 +295,7 @@ function addMarker(car_details){
       "</dl>" +
       "</div>" +
       "</div>" +
-      "<a class='btn btn-lg btn-primary' href='/cars'>Book</a>";
+      "<a class='btn btn-lg btn-primary' href='/cars/" + car_details.id + "'>Book</a>";
 
 
 
