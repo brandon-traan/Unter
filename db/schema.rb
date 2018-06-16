@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180604210754) do
     t.string "password_digest"
     t.string "role", default: "Customer"
     t.float "rentalCharge", default: 0.0
+    t.boolean "available", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["licenseN"], name: "index_users_on_licenseN", unique: true
   end
