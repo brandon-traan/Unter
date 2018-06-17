@@ -38,13 +38,61 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'bootstrap-sass', '3.3.7'
 gem 'autoprefixer-rails'
 gem 'rubocop', require: false
+
+gem 'pg'
+
+gem 'gon'
+source 'https://rubygems.org'
+
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+gem 'jquery-rails'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 5.1.4'
+# Use Puma as the app server
+gem 'puma'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# See https://github.com/rails/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
+gem 'rails_12factor'
+gem 'bcrypt',         '3.1.11'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.2'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.5'
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 3.0'
+# Use ActiveModel has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+# Use faker to generate sample users
+gem 'faker', '1.7.3'
+gem 'ransack'
+gem 'bootstrap-sass', '3.3.7'
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
+
+gem 'bootstrap-sass', '3.3.7'
+gem 'autoprefixer-rails'
+gem 'rubocop', require: false
 <<<<<<< HEAD
 gem 'pg'
 
 
 =======
 gem 'gon'
->>>>>>> d673e81754df5b8f57b5db36836921c22588c963
+<<<<<<< HEAD
+
+=======
+gem 'pg', '~> 0.20.0'
+>>>>>>> 2ba0bbbf6ca3cbbbe237087a163bf6e90d057a41
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -71,6 +119,11 @@ group :test do
   gem 'minitest-reporters',       '1.1.14'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
+end
+
+group :production do
+  gem 'pg', '~> 0.20.0'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
