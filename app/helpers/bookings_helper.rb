@@ -26,11 +26,11 @@ module BookingsHelper
     objects = objects.reverse
     objects.each_with_object('') do |object, string|
       rowCount += 1
-      string << content_tag(:tr, display_booking_search_results_row(object, rowCount))
+      string << content_tag(:tr, display_booking_search_results_row(object))
     end
   end
 
-  def display_booking_search_results_row(object, rowCount)
+  def display_booking_search_results_row(object)
 
     display = ""
     booking_fields.each_with_object(display) do |field, string|
@@ -70,7 +70,8 @@ module BookingsHelper
     objects.each_with_object('') do |object, string|
       if object.status == "Complete"
         rowCount += 1
-        string << content_tag(:tr, display_booking_search_results_row(object, rowCount))
+        string << content_tag(:tr, display_booking_search_results_row(object))
+        return string if rowCount == 8
       end
     end
   end
@@ -80,8 +81,10 @@ module BookingsHelper
     objects.each_with_object('') do |object, string|
       if !(object.status == "Complete")
         rowCount += 1
-        string << content_tag(:tr, display_booking_search_results_row(object, rowCount))
+        string << content_tag(:tr, display_booking_search_results_row(object))
+
       end
+
     end
   end
 
