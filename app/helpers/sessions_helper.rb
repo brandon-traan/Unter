@@ -44,6 +44,9 @@ module SessionsHelper
     end
   end
   
+  def correct_user?(user)
+    user == current_user
+  end
   # Confirms the correct user.
   def correct_user
     # @user = User.find(session[:user_id])

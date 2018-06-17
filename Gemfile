@@ -38,9 +38,13 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'bootstrap-sass', '3.3.7'
 gem 'autoprefixer-rails'
 gem 'rubocop', require: false
+<<<<<<< HEAD
 gem 'pg'
 
 
+=======
+gem 'gon'
+>>>>>>> d673e81754df5b8f57b5db36836921c22588c963
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,4 +1,11 @@
-<h1>Welcome#hello</h1>
-<p>Find me in app/views/welcome/hello.html.erb</p>
-<%= link_to "Sign up", signup_path, class: "btn btn-lg btn-primary" %>
-<%= link_to "Login", login_path, class: "btn btn-lg btn-primary" %>
+<% content_for(:head) do %>
+  <%= javascript_include_tag 'gmaps' %>
+<% end %>
+<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+<div align="center" class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+  <h1 id="unterTitle">Unter</h1>
+  <input id="pac-input" class="controls form-control" type="text" placeholder="Enter address...">
+  <div id="map" class="center-block"></div>
+  <%= link_to "Book", cars_path, class: "btn btn-lg btn-primary" %>
+</div>
+<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>

@@ -19,6 +19,7 @@
     </section>
   </aside>
 </div>
+<<<<<<< HEAD
 <% if isAdmin? || isSuperAdmin? %>
   <% if !current_user?(@user) %>
     <%= link_to "Delete", @user, method: :delete, data: { confirm: "Delete this user?" } %> |
@@ -27,3 +28,8 @@
 <%= link_to "home!", root_path %>
 <%= link_to "bookings", bookings_path %>
 <%= link_to "Cars", cars_path %>
+=======
+<%= link_to "Update Details", edit_user_path(current_user), class: "btn btn-lg btn-primary" %>
+<%= link_to "Home", welcome_hello_url, class: "btn btn-lg btn-primary" %>
+<%= link_to "Cars", cars_path, class: "btn btn-lg btn-primary" %>
+>>>>>>> d673e81754df5b8f57b5db36836921c22588c963
