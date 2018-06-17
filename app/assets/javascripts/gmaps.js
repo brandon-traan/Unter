@@ -291,7 +291,7 @@ function addMarker(car_details){
       "<dt>Car</dt><dd> &nbsp&nbsp" + car_details.make +" "+ car_details.model +"</dd>" +
       "<dt>Year</dt> <dd> &nbsp&nbsp" + car_details.year + "</dd>" +
       "<dt>Car Size</dt> <dd> &nbsp&nbsp" + car_details.size + "</dd>" +
-      "<dt>Car location</dt> <dd> &nbsp&nbsp" + car_details.latitude + "</dd>" +
+      "<dt>Car location</dt> <dd> &nbsp&nbsp" + car_details.location + "</dd>" +
       "</dl>" +
       "</div>" +
       "</div>" +
