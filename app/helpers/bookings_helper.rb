@@ -23,6 +23,7 @@ module BookingsHelper
 
   def display_booking_search_results(objects)
     rowCount = 0
+    objects = objects.reverse
     objects.each_with_object('') do |object, string|
       rowCount += 1
       string << content_tag(:tr, display_booking_search_results_row(object, rowCount))
