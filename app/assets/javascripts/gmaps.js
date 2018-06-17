@@ -1,13 +1,23 @@
 var car_data = {lat : -37.812735, lng: 144.961168};
 var map;
+var car_markers = [];
+var info_window = null;
+var image = null;
 
-function initAutocomplete(cardata) {
+
+
+function initAutocomplete() {
+
+info_window = new google.maps.InfoWindow({
+    content: ''
+  });
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: -37.8133664,
             lng: 144.9638285
         },
         zoom: 15,
+        disableDefaultUI: true,
         styles: [{
             "elementType": "geometry",
             "stylers": [{
@@ -195,6 +205,8 @@ function initAutocomplete(cardata) {
         }]
     });
 
+
+
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
@@ -211,46 +223,28 @@ function initAutocomplete(cardata) {
         lng: 144.906082
     }
 
-    var contentString = '<h1>Car details</h1>' + '<button type="button">Book</button>'
-
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-
-    // var image = {
-    //     url: 'https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-9/14522834_10208739668781423_6278668324375124829_n.jpg?_nc_cat=0&oh=206c27b103c90a6b608e56587c79221d&oe=5B8E4E51',
-    //     size: new google.maps.Size(71, 71),
-    //     origin: new google.maps.Point(0, 0),
-    //     anchor: new google.maps.Point(17, 34),
-    //     scaledSize: new google.maps.Size(25, 25)
-    // };
-
-    var image = {
-        url: 'https://cdn2.iconfinder.com/data/icons/car-vol-7/512/2-512.png',
+    //setting icon for car markers
+    image = {
+        url: 'http://www.iconsplace.com/icons/preview/orange/car-256.png',
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
+        scaledSize: new google.maps.Size(35, 35)
     };
 
-
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Hello World!',
-        icon: image
-    });
-
-    marker.addListener('click', function() {
-        infowindow.open(map, marker);
-    });
-
     google.maps.event.addListener(map, 'idle', function() {
-      addMarker();
+      var i;
+      for (i = 0; i < gon.cars.length; i++){
+        car_markers[i] = gon.cars[i];
+        addMarker(car_markers[i]);
+      }
+
     });
 
 
-    var markers = [];
+
+
+
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
@@ -260,12 +254,6 @@ function initAutocomplete(cardata) {
             return;
         }
 
-        // Clear out the old markers.
-        markers.forEach(function(marker) {
-            marker.setMap(null);
-        });
-        markers = [];
-
         // For each place, get the icon, name and location.
         var bounds = new google.maps.LatLngBounds();
         places.forEach(function(place) {
@@ -273,21 +261,6 @@ function initAutocomplete(cardata) {
                 console.log("Returned place contains no geometry");
                 return;
             }
-            var icon = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-                map: map,
-                icon: icon,
-                title: place.name,
-                position: place.geometry.location
-            }));
 
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
@@ -301,18 +274,35 @@ function initAutocomplete(cardata) {
 };
 
 
-function addMarker(){
-  var infowindow = new google.maps.InfoWindow({
-      content: "fuckyeah"
-  });
 
-  var markerTest = new google.maps.Marker({
-    position: car_data,
+
+function addMarker(car_details){
+  car_details.marker = new google.maps.Marker({
+    position: {lat : parseFloat(car_details.latitude), lng: parseFloat(car_details.longitude)},
     map: map,
-    title: "it works"
+    title: "it works",
+    icon: image
   });
 
-  google.maps.event.addListener(markerTest, 'click', function() {
-    infowindow.open(map,markerTest);
+
+  var content_string = "<div class='container-fluid'>" +
+      "<div align='left' class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>" +
+      "<dl>" +
+      "<dt>Car</dt><dd> &nbsp&nbsp" + car_details.make +" "+ car_details.model +"</dd>" +
+      "<dt>Year</dt> <dd> &nbsp&nbsp" + car_details.year + "</dd>" +
+      "<dt>Car Size</dt> <dd> &nbsp&nbsp" + car_details.size + "</dd>" +
+      "<dt>Car location</dt> <dd> &nbsp&nbsp" + car_details.latitude + "</dd>" +
+      "</dl>" +
+      "</div>" +
+      "</div>" +
+      "<a class='btn btn-lg btn-primary' href='/cars/" + car_details.id + "'>Book</a>";
+
+
+
+
+  google.maps.event.addListener(car_details.marker, 'click', function() {
+    info_window.close();
+    info_window.setContent(content_string);
+    info_window.open(map,car_details.marker);
   });
 };

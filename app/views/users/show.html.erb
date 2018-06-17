@@ -1,9 +1,24 @@
-<ul>First name: <%= @user.firstname %></ul>
-<ul>Last name: <%= @user.lastname %></ul>
-<ul>Email: <%= @user.email %></ul>
-<ul>Phone number: <%= @user.phone %></ul>
-<ul>Licence number: <%= @user.licenseN %></ul>
+<% provide(:title, @user.id) %>
 
+<h1>
+  <%= @user.firstname %><br>
+</h1>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <div>
+        <% if true %>
+          <%= label_tag :email %> :
+          <%= @user.email %><br>
+          <%= label_tag "Total rental charge" %> :
+          <%= '%.2f' % @user.rentalCharge %><br>
+          <%= label_tag "Available to rent car?" %>
+          <%= (@user.available)? "Yes": "No" %><br>
+        <% end %>
+      </div>
+    </section>
+  </aside>
+</div>
 <%= link_to "Update Details", edit_user_path(current_user), class: "btn btn-lg btn-primary" %>
 <%= link_to "Home", welcome_hello_url, class: "btn btn-lg btn-primary" %>
 <%= link_to "Cars", cars_path, class: "btn btn-lg btn-primary" %>

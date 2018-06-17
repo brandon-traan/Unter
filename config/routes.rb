@@ -19,13 +19,14 @@ Rails.application.routes.draw do
   resources :users
 
   get '/cars/new' => 'cars#new'
+  get '/cars/:id' => 'cars#show'
   resources :cars
 
 
   resources :bookings do
     member do
       put 'pickup'
-      put 'return'
+      put 'returncar'
       put 'cancel'
     end
   end

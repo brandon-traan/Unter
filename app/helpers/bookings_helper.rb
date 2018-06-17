@@ -2,14 +2,12 @@ module BookingsHelper
   
   def booking_fields 
     # fields to be displayed on front-end view
-    [:id, :user_firstname, :user_lastname, :user_email, :user_phone, :user_phone, :car_make,
-     :car_id, :car_model, :car_year, :car_size, :car_price, :pickup, :return] 
+    [:id, :checkOut, :pickup, :expectedReturn, :returnT, :user_id,:car_id, :status] 
   end
   
   def field_text(field)
-    translation = {:id=>"Index", :user_firstname=>"User First Name", :user_lastname=>"User Last Name", :user_email=>"User Email", :pickup=>"Pick up time", 
-     :user_phone=>"User Phone", :car_make=>"Car Make", :car_model=>"Car Model", :car_year=>"Car Year", :car_size=>"Car Size", :car_price=>"Car Price", 
-     :return=>"Return time", :user_id=>"User", :car_id=>"Car", :Status=>"Status"}
+    translation = {:id=>"Index", :checkOut=>"Check out time", :expectedReturn=>"Expected Return",
+    :pickup=>"Pick up time",:returnT=>"Return time", :user_id=>"User", :car_id=>"Car", :Status=>"Status"}
     translation[field]
   end
     
@@ -38,8 +36,8 @@ module BookingsHelper
       elsif field == :user_id
         uid = object.send(field)
         user = User.find_by_id(uid)
-        uname = user.name
-        string << content_tag(:td, link_to("#{uid} - #{uname}", user) )
+        ufname = user.firstname
+        string << content_tag(:td, link_to("#{uid} - #{ufname}", user) )
       elsif field == :car_id
         cid = object.send(field)
         car = Car.find(cid)

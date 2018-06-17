@@ -1,18 +1,22 @@
 class CarsController < ApplicationController
-  before_action :logged_in_user, only: [:index]
+
+   before_action :logged_in_user, only: [:index, :new, :show]
+
   def index
+    @cars_list = Car.all
     @q_cars = Car.ransack(params[:q])
     @cars = @q_cars.result().paginate(page: params[:page])
+
   end
-  
+
   def show
     @car = Car.find(params[:id])
   end
-  
+
   def new
     @car = Car.new
   end
-  
+
   def create
     @car = Car.new(car_params)
     if @car.save
@@ -22,7 +26,7 @@ class CarsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     @car = Car.find_by(params[:id])
   end
@@ -39,5 +43,5 @@ class CarsController < ApplicationController
     def car_params
       params.require(:car).permit(:make, :model, :year, :size, :price, :location, :status)
     end
-  
+
 end

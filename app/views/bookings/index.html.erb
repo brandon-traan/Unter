@@ -1,15 +1,16 @@
 <% provide(:title, 'All bookings') %>
 
 <h1>View and Search bookings</h1>
+<div class="bookingindex">
 <%= search_form_for @q_bookings do |f| %>
   
   <%= f.label "User id and name: " %>
   <%= "#{current_user.id}- #{current_user.firstname}" %><br>
   <%= f.label "Car make: " %>
-  <%= f.collection_select :cars_id, Car.all, :id, lambda {|c| "#{c.make}"}, {:prompt => "Please select a car"} %><br>
+  <%= f.collection_select :car_id, Car.all, :id, lambda {|c| "#{c.make}"}, {:prompt => "Please select a car"} %><br>
   <%= submit_tag 'Search', name: nil, class: "btn btn-primary" %>
   
-<% end %>
+<% end %></div>
 <br>
 
 <%= will_paginate %>
