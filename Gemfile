@@ -36,6 +36,7 @@ gem 'will_paginate',           '3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop', require: false
 gem 'gon'
+gem 'pg', '~> 0.20.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
