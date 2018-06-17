@@ -1,24 +1,44 @@
 <% provide(:title, @user.id) %>
 
-<h1>
-  <%= @user.firstname %><br>
-</h1>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <div>
-        <% if true %>
-          <%= label_tag :email %> :
-          <%= @user.email %><br>
-          <%= label_tag "Total rental charge" %> :
-          <%= '%.2f' % @user.rentalCharge %><br>
-          <%= label_tag "Available to rent car?" %>
-          <%= (@user.available)? "Yes": "No" %><br>
-        <% end %>
+  <div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <h1><%= @user.firstname%> <%= @user.lastname %></h1>
+
+      <div class="row headings">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 "><h2>User Details</h2></div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><h2>Current Bookings</h2></div>
       </div>
-    </section>
-  </aside>
-</div>
-<%= link_to "Update Details", edit_user_path(current_user), class: "btn btn-lg btn-primary" %>
-<%= link_to "Home", welcome_hello_url, class: "btn btn-lg btn-primary" %>
-<%= link_to "Cars", cars_path, class: "btn btn-lg btn-primary" %>
+      <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left">
+          <p>
+          <%= label_tag "name" %>: <%= @user.firstname%> <%= @user.lastname %><br>
+          <%= label_tag :email %>: <%= @user.email %><br>
+          <%= label_tag :phone %>: <%= @user.phone %> <br>
+          <%= label_tag "license" %>: <%= @user.licenseN %> <br>
+          <%= label_tag "Total rental charge" %>: <%= '%.2f' % @user.rentalCharge %><br>
+          <%= label_tag "Available to rent car?" %> <%= (@user.available)? "Yes": "No" %>
+        </p>
+        <%= link_to "Update Details", edit_user_path(current_user), class: "btn btn-lg btn-primary" %>
+      </div>
+      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+        <% if current_bookings(@bookings) %>
+        <%= content_tag :table, class: 'table' do %>
+          <%= content_tag :thead, display_booking_sorted_column_headers(@q_bookings), nil, false  %>
+          <%= content_tag :tbody, display_booking_search_results_current(@bookings), nil, false  %>
+        <% end %>
+        <%else %>
+        <%= content_tag :h4, "No current bookings" %>
+        <%end %>
+        <h2>Past Bookings</h2>
+        <%= content_tag :table, class: 'table' do %>
+          <%= content_tag :thead, display_booking_sorted_column_headers(@q_bookings), nil, false  %>
+          <%= content_tag :tbody, display_booking_search_results_past(@bookings), nil, false  %>
+        <% end %>
+        <%= link_to "New Bookings", cars_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to "View all Bookings", welcome_hello_url, class: "btn btn-lg btn-primary" %>
+      </div>
+    </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+  </div>

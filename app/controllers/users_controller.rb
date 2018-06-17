@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @q_bookings = Booking.ransack(params[:q])
+    @bookings = @q_bookings.result().where(:user_id => session[:user_id]).paginate(page: params[:page]) || [] # return current users record or empty
   end
 
   def new
@@ -13,6 +15,7 @@ class UsersController < ApplicationController
 
   def index
     @users = @q_users.result().paginate(page: params[:page])
+
   end
 
   def after_sign_in_path_for(resource)
@@ -21,6 +24,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @q_bookings = Booking.ransack(params[:q])
+    @bookings = @q_bookings.result().where(:user_id => session[:user_id]).paginate(page: params[:page]) || [] # return current users record or empty
+
   end
 
   def create
